@@ -4,6 +4,12 @@ import logging
 
 class Query:
     def __init__(self):
+        """
+        Initialize a new instance of Query.
+
+        Parameters:
+        None
+        """
         self.driver = 'oracle'
         self.ARKEON_host = 'ARC-CLUSTER.CMC.EC.GC.CA'
         self.ARKEON_port = '1521'
@@ -11,14 +17,14 @@ class Query:
 
     def connect(self, usern, passw):
         """
-        Connect to database
+        Connect to database.
 
         Parameters:
-        usern: Username that the user entered
-        passw: Password that the user entered
+        usern: Username that the user entered.
+        passw: Password that the user entered.
 
         Returns:
-        src_conn: The connection to the database
+        src_conn, bool: The connection to the database and True if the connection was successful. Else it returns None, False.
         """
         try:
             src_conn = oracledb.connect(
@@ -37,13 +43,18 @@ class Query:
 
     def get_value(self, connection, id, yr, mo, day, meas):
         """
-        Turn the SQL query into a DataFrame
+        Turn the SQL query into a DataFrame.
 
         Parameters:
-        None
+        connection: The arkeon connection.
+        id: The station id.
+        yr: The year.
+        mo: The month.
+        day: The day.
+        meas: The MEAS_TYPE_ID.
 
         Returns:
-        pd.DataFrame(rows, columns = column_headers): A DataFrame of the normals query
+        pd.DataFrame(rows, columns = column_headers): A DataFrame of the normals query, and returns None if it is an empty dataframe.
         """
         if connection is None:
             logging.error('No database connection established.')
