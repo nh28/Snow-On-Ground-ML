@@ -8,8 +8,8 @@ from tqdm import tqdm
 
 
 query = Query()
-username = "PCHARSCHN"
-password = "White16Pots"
+username = ""
+password = ""
 connection, success = query.connect(username, password)
 if success:
     
